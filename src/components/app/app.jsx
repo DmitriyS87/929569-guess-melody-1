@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 
 const App = (props) => {
   const {gameTime, errorCount} = props;
-
+  const clickHandler = (evt) => {
+    evt.preventDefault();
+  };
   return (
-    <StartScreen time={gameTime} errorCount={errorCount} />
+    <StartScreen time={gameTime} errorCount={errorCount} onClick={clickHandler} />
   );
 };
 
