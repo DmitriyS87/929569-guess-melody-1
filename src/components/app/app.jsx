@@ -36,9 +36,9 @@ class App extends React.Component {
 
     switch (question.type) {
       case `artist`:
-        return <ArtistQuestionScreen question={question} onAnswer={this._onAnswer} handlerPlayClick={this._handlerClick} handlerSubmit={this._handlerSubmit} />;
+        return <ArtistQuestionScreen question={question} onAnswer={this._onAnswer} handlerPlayClick={this._handlerClick} />;
       case `genre`:
-        return <GenreQuestionScreen question={question} onAnswer={this._handlerClick} handlerPlayClick={this._handlerClick} handlerSubmit={this._handlerSubmit} handlerSubmitClick={this._onAnswer} />;
+        return <GenreQuestionScreen question={question} onAnswer={this._onAnswer} handlerPlayClick={this._handlerClick} />;
     }
 
     throw new Error(`App screen state is not defined`);

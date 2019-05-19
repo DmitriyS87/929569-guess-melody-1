@@ -2,8 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ArtistQuestionScreen extends React.PureComponent {
+
+  constructor(props) {
+    super(props);
+    this._onAnswer = this._onAnswer.bind(this);
+  }
+
+  _onAnswer(evt) {
+    this.props.onAnswer(evt.target.value);
+  }
+
   render() {
-    const {question, onAnswer, handlerPlayClick, handlerSubmit} = this.props;
+    const {question, handlerPlayClick} = this.props;
     return (
       <section className="game game--artist">
         <header className="game__header">
@@ -35,11 +45,11 @@ class ArtistQuestionScreen extends React.PureComponent {
             <button className="track__button track__button--play" type="button" onClick={handlerPlayClick}></button>
             <audio></audio>
           </div>
-          <form className="game__artist" onSubmit={handlerSubmit}>
+          <form className="game__artist">
             {question.answers.map((answer, index) => {
               return (
                 <div key={index} className="artist">
-                  <input className="artist__input visually-hidden" type="radio" name="answer" value={answer.artist} id={`answer-` + index} onClick={(evt) => onAnswer(evt.target.value)} />
+                  <input className="artist__input visually-hidden" type="radio" name="answer" value={answer.artist} id={`answer-` + index} onClick={this._onAnswer} />
                   <label className="artist__name" htmlFor={`answer-` + index}>
                     <img className="artist__picture" src={answer.picture} alt={answer.artist} />
                     {answer.artist}
