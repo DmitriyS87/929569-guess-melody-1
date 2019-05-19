@@ -30,10 +30,8 @@ it(`GenreQuestionScreen correctly rendered`, () => {
   const tree = renderer.create(
       <GenreQuestionScreen
         question={mock}
-        handlerAnswerClick={handlerClick}
+        onAnswer={handlerClick}
         handlePlayClick={handlerClick}
-        handleSubmit={handlerClick}
-        handlerSubmitClick={handlerClick}
       />);
 
   expect(tree).toMatchSnapshot();

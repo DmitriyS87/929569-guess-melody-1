@@ -12,9 +12,13 @@ class GenreQuestionScreen extends React.Component {
     evt.stopPropagation();
 
     const checkAnswers = (answers, trueAnswer) => {
-      return answers.every((it) => {
+      const reuslt = answers.every((it) => {
         return it === trueAnswer;
       });
+      if (answers.length > 0) {
+        return reuslt;
+      }
+      return false;
     };
 
     const from = evt.currentTarget;
@@ -27,7 +31,7 @@ class GenreQuestionScreen extends React.Component {
       answer.checked = false;
     }
 
-    this.props.handlerSubmitClick(result);
+    this.props.onAnswer(result);
   }
 
   render() {
@@ -68,7 +72,7 @@ class GenreQuestionScreen extends React.Component {
                     <audio></audio>
                   </div>
                   <div className="game__answer">
-                    <input className="game__input visually-hidden" type="checkbox" name="answer" value={answer.genre} id={`answer-` + index} onClick={() => this._handleAnswerClick} />
+                    <input className="game__input visually-hidden" type="checkbox" name="answer" value={answer.genre} id={`answer-` + index} />
                     <label className="game__check" htmlFor={`answer-` + index}>Отметить</label>
                   </div>
                 </div>
