@@ -1,9 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class GenreQuestionScreen extends React.PureComponent {
+class GenreQuestionScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this._handleAnswerClick = this._handleAnswerClick.bind(this);
+  }
+
+  _handleAnswerClick(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+
+    const checkAnswers = (answers, trueAnswer) => {
+      return answers.every((it) => {
+        return it === trueAnswer;
+      });
+    };
+
+    const from = evt.currentTarget;
+    const formData = new FormData(from);
+    const answers = formData.getAll(`answer`);
+    const result = checkAnswers(answers, this.props.question.answer) ? true : false;
+
+    const formInputs = from.elements.answer;
+    for (let answer of formInputs) {
+      answer.checked = false;
+    }
+
+    this.props.handlerSubmitClick(result);
+  }
+
   render() {
-    const {question, handlerAnswerClick, handlerPlayClick, handlerSubmit, handlerSubmitClick} = this.props;
+    const {question, handlerPlayClick} = this.props;
     return (
       <section className="game game--genre">
         <header className="game__header">
@@ -14,7 +42,7 @@ class GenreQuestionScreen extends React.PureComponent {
 
           <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
             <circle className="timer__line" cx="390" cy="390" r="370"
-              style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/>
+              style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}} />
           </svg>
 
           <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
@@ -29,10 +57,9 @@ class GenreQuestionScreen extends React.PureComponent {
             <div className="wrong"></div>
           </div>
         </header>
-
         <section className="game__screen">
           <h2 className="game__title">Выберите {question.genre} треки</h2>
-          <form className="game__tracks" onSubmit={handlerSubmit}>
+          <form className="game__tracks" method="get" onSubmit={this._handleAnswerClick}>
             {question.answers.map((answer, index) => {
               return (
                 <div key={`answer` + index} className="track">
@@ -41,25 +68,23 @@ class GenreQuestionScreen extends React.PureComponent {
                     <audio></audio>
                   </div>
                   <div className="game__answer">
-                    <input className="game__input visually-hidden" type="checkbox" name="answer" value={answer.genre} id={`answer-` + index} onClick={handlerAnswerClick} />
+                    <input className="game__input visually-hidden" type="checkbox" name="answer" value={answer.genre} id={`answer-` + index} onClick={() => this._handleAnswerClick} />
                     <label className="game__check" htmlFor={`answer-` + index}>Отметить</label>
                   </div>
                 </div>
               );
             })}
-
-            <button className="game__submit button" type="submit" onClick={handlerSubmitClick}>Ответить</button>
+            <button className="game__submit button" type="submit">Ответить</button>
           </form>
         </section>
       </section>
-
     );
   }
 }
 
 GenreQuestionScreen.propTypes = {
   question: PropTypes.object.isRequired,
-  handlerAnswerClick: PropTypes.func,
+  onAnswer: PropTypes.func,
   handlerPlayClick: PropTypes.func,
   handlerSubmit: PropTypes.func,
   handlerSubmitClick: PropTypes.func

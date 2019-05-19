@@ -32,7 +32,13 @@ exports[`GenreQuestionScreen correctly rendered 1`] = `
         cx="390"
         cy="390"
         r="370"
-        style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"
+        style={
+          Object {
+            "filter": "url(#blur)",
+            "transform": "rotate(-90deg) scaleY(-1)",
+            "transformOrigin": "center",
+          }
+        }
       />
     </svg>
     <div
@@ -81,6 +87,8 @@ exports[`GenreQuestionScreen correctly rendered 1`] = `
     </h2>
     <form
       className="game__tracks"
+      method="get"
+      onSubmit={[Function]}
     >
       <div
         className="track"
@@ -101,7 +109,7 @@ exports[`GenreQuestionScreen correctly rendered 1`] = `
             className="game__input visually-hidden"
             id="answer-0"
             name="answer"
-            onClick={[MockFunction]}
+            onClick={[Function]}
             type="checkbox"
             value="rap"
           />
@@ -132,7 +140,7 @@ exports[`GenreQuestionScreen correctly rendered 1`] = `
             className="game__input visually-hidden"
             id="answer-1"
             name="answer"
-            onClick={[MockFunction]}
+            onClick={[Function]}
             type="checkbox"
             value="rock"
           />
@@ -163,7 +171,7 @@ exports[`GenreQuestionScreen correctly rendered 1`] = `
             className="game__input visually-hidden"
             id="answer-2"
             name="answer"
-            onClick={[MockFunction]}
+            onClick={[Function]}
             type="checkbox"
             value="jass"
           />
@@ -194,7 +202,7 @@ exports[`GenreQuestionScreen correctly rendered 1`] = `
             className="game__input visually-hidden"
             id="answer-3"
             name="answer"
-            onClick={[MockFunction]}
+            onClick={[Function]}
             type="checkbox"
             value="pop"
           />
@@ -208,7 +216,6 @@ exports[`GenreQuestionScreen correctly rendered 1`] = `
       </div>
       <button
         className="game__submit button"
-        onClick={[MockFunction]}
         type="submit"
       >
         Ответить
