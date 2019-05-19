@@ -32,7 +32,13 @@ exports[`ArtistQuestionScreen correctly rendered 1`] = `
         cx="390"
         cy="390"
         r="370"
-        style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"
+        style={
+          Object {
+            "filter": "url(#blur)",
+            "transform": "rotate(-90deg) scaleY(-1)",
+            "transformOrigin": "center",
+          }
+        }
       />
     </svg>
     <div
@@ -96,7 +102,7 @@ exports[`ArtistQuestionScreen correctly rendered 1`] = `
           className="artist__input visually-hidden"
           id="answer-0"
           name="answer"
-          onClick={[MockFunction]}
+          onClick={[Function]}
           type="radio"
           value="Philipp Kirkorov"
         />
@@ -119,7 +125,7 @@ exports[`ArtistQuestionScreen correctly rendered 1`] = `
           className="artist__input visually-hidden"
           id="answer-1"
           name="answer"
-          onClick={[MockFunction]}
+          onClick={[Function]}
           type="radio"
           value="Slava KPSS"
         />
@@ -142,7 +148,7 @@ exports[`ArtistQuestionScreen correctly rendered 1`] = `
           className="artist__input visually-hidden"
           id="answer-2"
           name="answer"
-          onClick={[MockFunction]}
+          onClick={[Function]}
           type="radio"
           value="Basta"
         />
